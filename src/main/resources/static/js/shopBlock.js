@@ -9,7 +9,7 @@ function checkBlock(resaBisName, prIdx) {
             , success: function (data) {
                 if (data) {
                     alert("예약이 불가능한 회원입니다")
-                    location.href = '/'
+                    location.reload();
                 } else {
                     location.href = '/reservation/' + resaBisName
                 }

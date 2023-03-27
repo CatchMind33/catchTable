@@ -4,7 +4,7 @@ import com.catchmind.catchtable.dto.SnsDto;
 
 import java.util.List;
 
-public record TimeLineResponse(
+public record ProfileResponse(
         String prName,
         String prNick,
         String prRegion,

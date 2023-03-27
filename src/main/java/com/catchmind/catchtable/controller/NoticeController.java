@@ -11,10 +11,12 @@ import com.catchmind.catchtable.dto.network.request.DeclareCommentRequest;
 import com.catchmind.catchtable.dto.network.request.DeclareReviewRequest;
 import com.catchmind.catchtable.dto.network.request.ImprovementRequest;
 import com.catchmind.catchtable.dto.security.CatchPrincipal;
-import com.catchmind.catchtable.repository.*;
+import com.catchmind.catchtable.repository.AskRepository;
+import com.catchmind.catchtable.repository.CommentRepository;
+import com.catchmind.catchtable.repository.NoticeRepository;
+import com.catchmind.catchtable.repository.ReviewRepository;
 import com.catchmind.catchtable.service.NoticeService;
 import com.catchmind.catchtable.service.PaginationService;
-import com.catchmind.catchtable.service.ProfileLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,10 +38,6 @@ public class NoticeController {
     private final AskRepository askRepository;
     private final NoticeRepository noticeRepository;
     private final NoticeService noticeService;
-    private final ProfileLogicService profileLogicService;
-    private final ImprovementRepository improvementRepository;
-    private final DeclareReviewRepository declareReviewRepository;
-    private final DeclareCommentRepository declareCommentRepository;
     private final PaginationService paginationService;
     private final ReviewRepository reviewRepository;
     private final CommentRepository commentRepository;
@@ -50,9 +48,6 @@ public class NoticeController {
     @GetMapping("/notice")
     public String notice(Model model, @PageableDefault(size=10, sort="noIdx", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<NoticeDto> noticeDtoList = noticeRepository.findAll(pageable).map(NoticeDto::from);
-//        final int start = (int)pageable.getOffset();
-//        final int end = Math.min((start + pageable.getPageSize()), noticeDtoList.size());
-//        PageImpl<NoticeDto> page = new PageImpl<>(noticeDtoList.subList(start, end), pageable, noticeDtoList.size());
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), noticeDtoList.getTotalPages());
         model.addAttribute("notice", noticeDtoList);
         model.addAttribute("paginationBarNumbers", barNumbers);
@@ -62,10 +57,8 @@ public class NoticeController {
     //공지사항 상세
     @GetMapping("/notice/content/{noIdx}")
     public String noticeContent(Model model, @PathVariable Long noIdx) {
-//        List<NoticeDto> noticeDtoList = noticeRepository.findAll().stream().map(NoticeDto::from).toList();
         NoticeDto noticeDto = noticeService.getNotice(noIdx);
         model.addAttribute("content", noticeDto);
-//        model.addAttribute("content", noticeDtoList);
         return "notice/notice_review";
     }
 
@@ -89,19 +82,13 @@ public class NoticeController {
 
     // 1대1문의 리스트
     @GetMapping("/support/contact")
-    public String contact(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal, @PageableDefault(size=10, sort="askIdx", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String contact(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
             return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-//        List<AskDto> askDtoList = askRepository.findAllByProfile_PrIdx(prIdx).stream().map(AskDto::from).toList();
-
-        Page<Ask> asks = noticeService.list(pageable, prIdx);
-        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), asks.getTotalPages());
-
+        List<Ask> asks = noticeService.list(prIdx);
         model.addAttribute("notice", asks);
-        model.addAttribute("paginationBarNumbers", barNumbers);
-//        model.addAttribute("notice", askDtoList);
 
         return "notice/contact1";
     }
@@ -173,15 +160,12 @@ public class NoticeController {
 
     // 개선제안 리스트
     @GetMapping("/support/improve")
-    public String improve(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal, @PageableDefault(size=10, sort="impIdx", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String improve(Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if(catchPrincipal == null) {
             return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-//        List<ImprovementDto> improvementDtoList = improvementRepository.findAllByProfile_PrIdx(prIdx).stream().map(ImprovementDto::from).toList();
-        Page<Improvement> improvementDtoList = noticeService.listImp(pageable, prIdx);
-        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), improvementDtoList.getTotalPages());
-        model.addAttribute("paginationBarNumbers", barNumbers);
+        List<Improvement> improvementDtoList = noticeService.listImp(prIdx);
         model.addAttribute("notice", improvementDtoList);
         return "notice/improve1";
     }

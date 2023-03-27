@@ -6,9 +6,8 @@ import com.catchmind.catchtable.dto.network.request.ReserveRequest;
 import com.catchmind.catchtable.dto.network.response.ApproveResponse;
 import com.catchmind.catchtable.dto.network.response.ReadyResponse;
 import com.catchmind.catchtable.dto.security.CatchPrincipal;
-import com.catchmind.catchtable.repository.ReserveRepository;
 import com.catchmind.catchtable.service.KaKaoPayLogicService;
-import com.catchmind.catchtable.service.ReserveLogicService;
+import com.catchmind.catchtable.service.ReserveService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,12 +25,8 @@ import java.util.List;
 @SessionAttributes({"tid","request"})
 public class ReservationController {
 
-    private final ReserveLogicService reserveLogicService;
-    private final ReserveRepository reserveRepository;
+    private final ReserveService reserveLogicService;
     private final KaKaoPayLogicService kakaopayService;
-
-
-
 
     @GetMapping("{resaBisName}")
     public String resMain(@PathVariable String resaBisName, Model model, @AuthenticationPrincipal CatchPrincipal catchPrincipal) {

@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReserveLogicService {
+public class ReserveService {
     private final ProfileRepository profileRepository;
 
     private final ReserveRepository reserveRepository;
