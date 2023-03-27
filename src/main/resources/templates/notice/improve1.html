@@ -134,17 +134,17 @@
         </div>
     </div>
     <!--페이징 처리-->
-    <div class="page_wrap">
-        <div class="page_nation" aria-label="Page navigation example">
-            <a class="pagine2" th:href="@{/support/improve(page=${notice.number - 1})}"
-               th:class="'page-prev' + (${notice.number} <= 0 ? ' page-disabled':'')"></a>
-            <span class="pagine" th:each="pageNumber : ${paginationBarNumbers}">
-                        <a th:text="${pageNumber + 1}" th:href="@{/support/improve(page=${pageNumber})}"
-                           th:class="(${pageNumber} == ${notice.number} ? 'active' : '')">1</a></span>
-            <a th:href="@{/support/improve(page=${notice.number + 1})}" th:class="'page-next' +
-                    (${notice.number} >= ${notice.totalPages - 1} ? '':' page-disabled')"></a>
-        </div>
-    </div>
+<!--    <div class="page_wrap">-->
+<!--        <div class="page_nation" aria-label="Page navigation example">-->
+<!--            <a class="pagine2" th:href="@{/support/improve(page=${notice.number - 1})}"-->
+<!--               th:class="'page-prev' + (${notice.number} <= 0 ? ' page-disabled':'')"></a>-->
+<!--            <span class="pagine" th:each="pageNumber : ${paginationBarNumbers}">-->
+<!--                        <a th:text="${pageNumber + 1}" th:href="@{/support/improve(page=${pageNumber})}"-->
+<!--                           th:class="(${pageNumber} == ${notice.number} ? 'active' : '')">1</a></span>-->
+<!--            <a th:href="@{/support/improve(page=${notice.number + 1})}" th:class="'page-next' +-->
+<!--                    (${notice.number} >= ${notice.totalPages - 1} ? '':' page-disabled')"></a>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--페이징 끝-->
     <!-- footer 시작 -->
     <div th:replace="fragment/footer :: footer"/>

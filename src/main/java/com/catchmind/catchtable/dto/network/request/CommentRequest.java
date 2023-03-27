@@ -1,11 +1,10 @@
 package com.catchmind.catchtable.dto.network.request;
 
 import com.catchmind.catchtable.dto.CommentDto;
-import com.catchmind.catchtable.dto.CommentHeartDto;
 import com.catchmind.catchtable.dto.ProfileDto;
 import com.catchmind.catchtable.dto.ReviewDto;
 
-public record CommentHeartRequest(
+public record CommentRequest(
         Long revIdx,
         Long comIdx,
         Long prIdx,
@@ -22,11 +21,4 @@ public record CommentHeartRequest(
         );
     }
 
-    public CommentHeartDto toCommentHeartDto() {
-        return CommentHeartDto.of(
-                ReviewDto.ofIdx(revIdx),
-                ProfileDto.ofIdx(prIdx),
-                CommentDto.ofIdx(comIdx)
-        );
-    }
 }

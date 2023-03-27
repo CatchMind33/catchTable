@@ -10,7 +10,7 @@ import com.catchmind.catchtable.dto.security.CatchPrincipal;
 import com.catchmind.catchtable.repository.ReserveRepository;
 import com.catchmind.catchtable.repository.TalkAdminRepository;
 import com.catchmind.catchtable.service.MydiningService;
-import com.catchmind.catchtable.service.ProfileLogicService;
+import com.catchmind.catchtable.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,7 +30,7 @@ public class MydiningController {
 
     private final ReserveRepository reserveRepository;
     private final MydiningService mydiningService;
-    private final ProfileLogicService profileLogicService;
+    private final ProfileService profileService;
     private final TalkAdminRepository talkAdminRepository;
 
 
@@ -61,7 +61,7 @@ public class MydiningController {
             return "redirect:/login";
         }
         Long prIdx = catchPrincipal.prIdx();
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         List<Reserve> reserves = reserveRepository.findAllByresStatusAndProfile_PrIdx(ReservationType.DONE, prIdx, Sort.by(Sort.Direction.DESC, "updateDate"));
         System.out.println(reserves);
         model.addAttribute("list", reserves);
@@ -76,7 +76,7 @@ public class MydiningController {
         }
         System.out.println("🍎" + resIdx);
         Long prIdx = catchPrincipal.prIdx();
-        ProfileDto profile = profileLogicService.getProfileElements(prIdx);
+        ProfileDto profile = profileService.getProfileElements(prIdx);
         ReserveDto reserveDto = mydiningService.getDetail(resIdx);
         model.addAttribute("profile", profile);
         model.addAttribute("detail", reserveDto);

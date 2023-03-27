@@ -10,8 +10,6 @@ import com.catchmind.catchtable.dto.network.request.ImprovementRequest;
 import com.catchmind.catchtable.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,12 +30,12 @@ public class NoticeService {
     private final DeclareCommentRepository declareCommentRepository;
 
     @Transactional(readOnly = true)
-    public Page<Ask> list(Pageable pageable, Long prIdx) {
-        return askRepository.findAllByProfile_PrIdx(prIdx, pageable);
+    public List<Ask> list(Long prIdx) {
+        return askRepository.findAllByProfile_PrIdx(prIdx, Sort.by(Sort.Direction.DESC, "askIdx"));
     }
 
-    public Page<Improvement> listImp(Pageable pageable, Long prIdx) {
-        return improvementRepository.findAllByProfile_PrIdx(prIdx, pageable);
+    public List<Improvement> listImp(Long prIdx) {
+        return improvementRepository.findAllByProfile_PrIdx(prIdx, Sort.by(Sort.Direction.DESC, "impIdx"));
     }
 
     public List<DeclareReviewDto> listDe(Long prIdx){
