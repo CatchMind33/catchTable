@@ -1,8 +1,5 @@
-<div align="center"> 
- 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=250&text=🍽️CatchTable🍽️&desc=&descSize=30&descAlignY=65&animation=fadeIn&fontAlignY=40)
 
-</div>
 
 <br>
 
