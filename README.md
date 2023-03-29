@@ -1,8 +1,5 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=250&text=🍽️CatchTable🍽️&desc=&descSize=30&descAlignY=65&animation=fadeIn&fontAlignY=40)
 
-
-<br>
-
 <div align="LEFT">
 <h4> 🗓️ 개발기간 2022.12.05 ~ 2023.02.14 </h4> 
 <h4> 배포 사이트 : http://3.38.50.114:8888</h4>
