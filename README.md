@@ -102,6 +102,25 @@
    * 리뷰 신고 내역
    * 댓글 신고 내역
    * 약관 및 정책 
+   <br>
+   <br>
+   
+  ## 전체 ERD
+  <div align="center">
+  
+  ![3조_전체 ERD](https://user-images.githubusercontent.com/104509621/228535181-81226047-4c21-4e50-9064-2c8f8121ec6a.png)
+  
+  </div>
+  <br>
+  <br>
+   
+   
+   ## 프로젝트 화면
+   <div align="center">
+   
+   ![catchTable](https://user-images.githubusercontent.com/104509621/228534566-b41c01d0-9cc6-49f5-b318-a3fb88b2ec51.gif)
+   
+   </div>
 
 
 
@@ -111,4 +130,5 @@
 	
 
   
+
 
