@@ -141,10 +141,10 @@
                                                             <th:block
                                                                     th:if="${list.bisLunch} != null and ${list.bisDinner} != null">
                                                                 <span class="price"
-                                                                    th:text="|${list.bisLunch} · ${list.bisDinner}|"></span>
+                                                                    th:text="|점심 ${list.bisLunch} · 저녁 ${list.bisDinner}|"></span>
                                                             </th:block>
                                                             <th:block
-                                                                    th:if="${list.bisLunch} != null and ${list.bisDinner} != null">
+                                                                    th:unless="${list.bisLunch} != null and ${list.bisDinner} != null">
                                                             </th:block>
                                                         </div>
                                                     </div>

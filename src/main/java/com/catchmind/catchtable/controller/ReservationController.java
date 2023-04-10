@@ -51,7 +51,7 @@ public class ReservationController {
     @ResponseBody
     public String resUpdatePlanned(@RequestBody ReserveRequest request,@PathVariable Long resIdx){
         reserveLogicService.updateReserve(request,resIdx);
-        return "/mydining/planned";
+        return "mydining/planned";
     }
 
     @GetMapping("/blockCheck")

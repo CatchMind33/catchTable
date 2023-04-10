@@ -1,6 +1,9 @@
 package com.catchmind.catchtable.service;
 
-import com.catchmind.catchtable.domain.*;
+import com.catchmind.catchtable.domain.Follow;
+import com.catchmind.catchtable.domain.Profile;
+import com.catchmind.catchtable.domain.Reserve;
+import com.catchmind.catchtable.domain.Review;
 import com.catchmind.catchtable.dto.*;
 import com.catchmind.catchtable.dto.network.request.CommentRequest;
 import com.catchmind.catchtable.dto.network.request.FollowRequest;

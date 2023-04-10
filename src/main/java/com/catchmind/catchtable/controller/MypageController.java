@@ -54,7 +54,7 @@ public class MypageController {
     @GetMapping("")
     public ModelAndView myMain(@AuthenticationPrincipal CatchPrincipal catchPrincipal) {
         if (catchPrincipal == null) {
-            ModelAndView modelAndView = new ModelAndView("/login");
+            ModelAndView modelAndView = new ModelAndView("login");
             return modelAndView;
         }
         boolean isSnsAddr = false;
@@ -74,7 +74,7 @@ public class MypageController {
 
         System.out.println(catchPrincipal.prIdx());
         ProfileDto profile = profileService.getProfileElements(prIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mypage_main");
+        ModelAndView modelAndView = new ModelAndView("mypage/mypage_main");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("isSnsAddr", isSnsAddr);
@@ -100,7 +100,7 @@ public class MypageController {
         ProfileResponse header = header(prIdx);
         System.out.println(catchPrincipal.prIdx());
         ProfileDto profile = profileService.getProfileElements(prIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mypage_main_modify");
+        ModelAndView modelAndView = new ModelAndView("mypage/mypage_main_modify");
         modelAndView.addObject("profile", profile);
         String[] arr = profile.prBirth().split(",");
         modelAndView.addObject("header", header);
@@ -161,7 +161,7 @@ public class MypageController {
         model.addAttribute("header", header);
         model.addAttribute("profile", profile);
         model.addAttribute("isSnsAddr", isSnsAddr);
-        return new ModelAndView("/mypage/newSNS");
+        return new ModelAndView("mypage/newSNS");
     }
 
     // sns 추가 및 업데이트
@@ -220,7 +220,7 @@ public class MypageController {
         map.addAttribute("profile", profile);
         map.addAttribute("header", header);
         map.addAttribute("isSnsAddr", isSnsAddr);
-        return "/mypage/myReview";
+        return "mypage/myReview";
     }
 
     // 내 컬렉션 보기
@@ -244,7 +244,7 @@ public class MypageController {
         model.addAttribute("header", header);
         model.addAttribute("isSnsAddr", isSnsAddr);
         System.out.println(MyCollections);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mycollection");
+        ModelAndView modelAndView = new ModelAndView("mypage/mycollection");
         return modelAndView;
     }
 
@@ -267,7 +267,7 @@ public class MypageController {
         System.out.println(catchPrincipal.prIdx());
         ProfileDto profile = profileService.getProfileElements(prIdx);
         MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/mycollectionDetail");
+        ModelAndView modelAndView = new ModelAndView("mypage/mycollectionDetail");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("list", bistroSaves);
@@ -314,7 +314,7 @@ public class MypageController {
         ProfileDto profile = profileService.getProfileElements(prIdx);
         MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
 //        model.addAttribute("list",sav)
-        ModelAndView modelAndView = new ModelAndView("/mypage/mycollection_modify");
+        ModelAndView modelAndView = new ModelAndView("mypage/mycollection_modify");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("myCollection", myCollection);
@@ -333,7 +333,7 @@ public class MypageController {
         MyCollectionDto myCollection = profileService.getMyCollectionElements(colIdx);
         profileService.updateMyCollection(colIdx, request.toDto());
 //        model.addAttribute("list",sav)
-        ModelAndView modelAndView = new ModelAndView("/mypage/mycollection_modify");
+        ModelAndView modelAndView = new ModelAndView("mypage/mycollection_modify");
         return "ok";
     }
 
@@ -354,7 +354,7 @@ public class MypageController {
         }
         System.out.println("🥩🥩" + prIdx);
         ProfileDto profile = profileService.getProfileElements(prIdx);
-        ModelAndView modelAndView = new ModelAndView("/mypage/new_mycollection");
+        ModelAndView modelAndView = new ModelAndView("mypage/new_mycollection");
         modelAndView.addObject("profile", profile);
         modelAndView.addObject("header", header);
         modelAndView.addObject("isSnsAddr", isSnsAddr);
@@ -391,7 +391,7 @@ public class MypageController {
         model.addAttribute("header", header);
         model.addAttribute("isSnsAddr", isSnsAddr);
         System.out.println(bistroSaves);
-        ModelAndView modelAndView = new ModelAndView("/mypage/myCollection_save_restaurant");
+        ModelAndView modelAndView = new ModelAndView("mypage/myCollection_save_restaurant");
         return modelAndView;
     }
 
@@ -426,7 +426,7 @@ public class MypageController {
         model.addAttribute("list", bistroSaves);
         model.addAttribute("header", header);
         model.addAttribute("isSnsAddr", isSnsAddr);
-        ModelAndView modelAndView = new ModelAndView("/mypage/save_restaurant");
+        ModelAndView modelAndView = new ModelAndView("mypage/save_restaurant");
         return modelAndView;
     }
 
