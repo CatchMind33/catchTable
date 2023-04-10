@@ -1,3 +1,15 @@
+.side-bar:before{
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin: 0 7px 0 3px;
+  background-color: #7b878c;
+  vertical-align: -1px;
+}
+.side-bar, .non-side-bar{
+  padding: 5px 5px;
+}
 .header{
     /* 글자 드래그 금지 */
     -webkit-touch-callout: none;
@@ -38,9 +50,6 @@
   list-style: none;
   padding-left: 0;
   font-size: 16px;
-}
-.loginMenu a{
-  padding: 8px 10px;
 }
 /* 가운데 회색 줄 */
 .centerLine{
