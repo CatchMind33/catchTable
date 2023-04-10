@@ -258,10 +258,10 @@
                                                         <th:block
                                                                 th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
                                                         <span class="price"
-                                                              th:text="|${list.bistroDetailDto.bistroInfoDto.bisLunch} · ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
+                                                              th:text="|점심 ${list.bistroDetailDto.bistroInfoDto.bisLunch} · 저녁 ${list.bistroDetailDto.bistroInfoDto.bisDinner}|"></span>
                                                         </th:block>
                                                         <th:block
-                                                                th:if="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
+                                                                th:unless="${list.bistroDetailDto.bistroInfoDto.bisLunch} != null and ${list.bistroDetailDto.bistroInfoDto.bisDinner} != null">
                                                         </th:block>
                                                     </div>
                                                     <div class="timetable-list timetable-list-sm">

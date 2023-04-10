@@ -3141,12 +3141,12 @@ element.style {
   background-size: cover;
 }
 .slide_item.item2 {
-  background-image: url("../banner_image/banner_2.png");
+  background-image: url("../banner_image/banner2.png");
   background-position: center;
   background-size: cover;
 }
 .slide_item.item3 {
-  background-image: url("../banner_image/banner_3.png");
+  background-image: url("../banner_image/spring_banner.png");
   background-position: center;
   background-size: cover;
 }

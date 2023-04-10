@@ -102,9 +102,9 @@
                         </div>
                         <div class="price">
                             <span class="lunch"
-                                  th:text=" |${detail.bistroDetailDto().bistroInfoDto().bisLunch()}|">점심 5 - 7만원</span>
+                                  th:text=" |점심 ${detail.bistroDetailDto().bistroInfoDto().bisLunch()}|">점심 5 - 7만원</span>
                             <span class="dinner"
-                                  th:text=" |${detail.bistroDetailDto().bistroInfoDto().bisDinner()}|">저녁 6.8만원</span>
+                                  th:text=" |저녁 ${detail.bistroDetailDto().bistroInfoDto().bisDinner()}|">저녁 6.8만원</span>
                         </div>
                     </div>
                 </div>
@@ -337,16 +337,17 @@
                         <div class="desc-blocks" style="word-break: break-word;">
                             <div class="desc-block">
                                 <dl>
-                                    <th:block
-                                            th:if="${detail.bistroDetailDto().bdHp()} != '' or ${detail.bistroDetailDto().bdHp()} != null">
+                                    <th:block th:if="${detail.bistroDetailDto().bdHp()} != ''">
                                         <dt>전화번호</dt>
                                         <dd th:text="${detail.bistroDetailDto().bdHp()}">02-6282-5000</dd>
+                                    </th:block>
+                                    <th:block th:unless="${detail.bistroDetailDto().bdHp()} != ''">
                                     </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <th:block th:if="${detail.bistroDetailDto().bdIntro()} != '' or ${detail.bistroDetailDto().bdIntro()} != null">
+                                    <th:block th:if="${detail.bistroDetailDto().bdIntro()} != ''">
                                         <dt><a class="__toggle">매장 소개</a></dt>
                                         <dd class="color-gray" th:text="${detail.bistroDetailDto().bdIntro()}"
                                             style="white-space: pre-line">강렬한 삼바 리듬과 함께 즐기는 브라질 슈하스코
@@ -356,36 +357,44 @@
                                             브라질에서 열정의 나라 브라질만의 놀라운 맛과 멋을 경험해 보세요.
                                         </dd>
                                     </th:block>
+                                    <th:block th:unless="${detail.bistroDetailDto().bdIntro()} != ''">
+                                    </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <th:block th:if="${detail.bistroDetailDto().bdHour()} != '' or ${detail.bistroDetailDto().bdHour()} != null">
+                                    <th:block th:if="${detail.bistroDetailDto().bdHour()} != ''">
                                         <dt><a class="__toggle">영업시간</a></dt>
                                         <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHour()}">
                                             9:00 - 10:00
                                         </dd>
                                     </th:block>
-                                </dl>
-                            </div>
-                            <div class="desc-block">
-                                <dl>
-                                    <th:block th:if="${detail.bistroDetailDto().bdHoliday()} != '' or ${detail.bistroDetailDto().bdHoliday()} != null">
-                                        <dt><a class="__toggle">정기 휴무</a></dt>
-                                        <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHoliday()}">연중무휴
-                                        </dd>
+                                    <th:block th:unless="${detail.bistroDetailDto().bdHour()} != ''">
                                     </th:block>
                                 </dl>
                             </div>
                             <div class="desc-block">
                                 <dl>
-                                    <th:block th:if="${detail.bistroDetailDto().bdHome()} != '' or ${detail.bistroDetailDto().bdHome()} != null">
+                                    <th:block th:if="${detail.bistroDetailDto().bdHoliday()} != ''">
+                                        <dt><a class="__toggle">정기 휴무</a></dt>
+                                        <dd class="color-gray" th:text="${detail.bistroDetailDto().bdHoliday()}">연중무휴
+                                        </dd>
+                                    </th:block>
+                                    <th:block th:unless="${detail.bistroDetailDto().bdHoliday()} != ''">
+                                    </th:block>
+                                </dl>
+                            </div>
+                            <div class="desc-block">
+                                <dl>
+                                    <th:block th:if="${detail.bistroDetailDto().bdHome()} != ''">
                                         <dt>홈페이지</dt>
                                         <dd>
-                                            <th:block style="color: rgb(0, 0, 255); cursor: pointer;"
-                                                      th:href="${detail.bistroDetailDto().bdHome()}"
-                                                      target="_blank"></th:block>
+                                            <a style="color: rgb(0, 0, 255); cursor: pointer;"
+                                               th:href="${detail.bistroDetailDto().bdHome()}"
+                                               target="_blank">[[${detail.bistroDetailDto().bdHome()}]]</a>
                                         </dd>
+                                    </th:block>
+                                    <th:block th:unless="${detail.bistroDetailDto().bdHome()} != ''">
                                     </th:block>
                                 </dl>
 

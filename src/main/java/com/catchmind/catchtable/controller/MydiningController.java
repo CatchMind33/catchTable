@@ -43,7 +43,7 @@ public class MydiningController {
         List<Reserve> reserves = reserveRepository.findAllByresStatusAndProfile_PrIdx(ReservationType.PLANNED, prIdx, Sort.by(Sort.Direction.DESC, "updateDate"));
         System.out.println(reserves);
         model.addAttribute("list", reserves);
-        return "/mydining/planned";
+        return "mydining/planned";
     }
 
     @GetMapping("/reserve/plannedDetail/{resIdx}")
@@ -52,7 +52,7 @@ public class MydiningController {
         ReserveDto reserveDto = mydiningService.getDetail(resIdx);
         model.addAttribute("detail", reserveDto);
         System.out.println("reserveDTO->" + reserveDto);
-        return "/mydining/plannedDetail";
+        return "mydining/plannedDetail";
     }
 
     @GetMapping("/done")
@@ -82,7 +82,7 @@ public class MydiningController {
         model.addAttribute("detail", reserveDto);
         model.addAttribute("resIdx", resIdx);
         System.out.println("reserveDTO->" + reserveDto);
-        return "/mydining/doneDetail";
+        return "mydining/doneDetail";
     }
 
 
